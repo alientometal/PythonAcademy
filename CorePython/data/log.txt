@@ -1,0 +1,3 @@
+Start of log
+Another line
+File not found: /workspaces/PythonAcademy/CorePython/data/does_not_exist.txt

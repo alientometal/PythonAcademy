@@ -1,0 +1,6 @@
+id,name,score
+1,Alice,98
+2,Bob,87
+3,Carol,91
+4,Dan,73
+5,Eve,88
