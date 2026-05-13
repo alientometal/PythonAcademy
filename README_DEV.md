@@ -47,4 +47,12 @@ engine = create_engine(url)
 ```
 
 ## Copilot "Hint Mode"
-This environment is configured to restrict GitHub Copilot's "auto-solve" features. You will need to manually trigger suggestions or use Copilot Chat for guidance. Copilot is instructed to act as a TA, providing hints and small snippets rather than full solutions.
+This environment is configured to reduce GitHub Copilot's auto-solve behavior.
+
+- Automatic inline completions are disabled.
+- Next edit suggestions are disabled.
+- Copilot Chat should behave like a TA, not a solution generator.
+- For notebooks, TODOs, exercise prompts, starter code, and assert/check cells, Copilot should give hints, questions, pseudocode, or very small fragments instead of full completed answers.
+- Students should still write the final code themselves and use the notebook assert/check cells to verify progress.
+
+The detailed behavior rules live in [`.github/copilot-instructions.md`](./.github/copilot-instructions.md).
