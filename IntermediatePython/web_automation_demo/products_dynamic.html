@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Product Demo - Dynamic</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; color: #1f2937; }
+    input { padding: 0.5rem; width: 260px; }
+    button { padding: 0.55rem 0.8rem; margin-left: 0.4rem; }
+    .product-card { border: 1px solid #d1d5db; border-radius: 6px; padding: 1rem; margin: 1rem 0; max-width: 460px; }
+    .price { color: #047857; font-weight: bold; }
+    .empty { color: #991b1b; }
+  </style>
+</head>
+<body>
+  <h1>Dynamic Product Search</h1>
+  <input id="search" type="text" placeholder="Search products">
+  <button id="search-button" type="button">Search</button>
+  <div id="results"></div>
+
+  <script>
+    const products = [
+      { id: "001", name: "Wireless Mouse", price: "$25.99", url: "/products/mouse" },
+      { id: "002", name: "Keyboard", price: "$45.00", url: "/products/keyboard" },
+      { id: "003", name: "USB-C Hub", price: "$32.50", url: "/products/usb-c-hub" },
+      { id: "004", name: "Laptop Stand", price: "$28.00", url: "/products/laptop-stand" }
+    ];
+
+    function render(items) {
+      const results = document.querySelector("#results");
+      results.innerHTML = "";
+
+      if (items.length === 0) {
+        results.innerHTML = '<p class="empty">No products found</p>';
+        return;
+      }
+
+      for (const product of items) {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.dataset.productId = product.id;
+        card.innerHTML = `
+          <h2>${product.name}</h2>
+          <p class="price">${product.price}</p>
+          <a class="product-link" href="${product.url}">View details</a>
+        `;
+        results.appendChild(card);
+      }
+    }
+
+    function search() {
+      const query = document.querySelector("#search").value.toLowerCase().trim();
+      const filtered = products.filter(product => product.name.toLowerCase().includes(query));
+      render(filtered);
+    }
+
+    document.querySelector("#search-button").addEventListener("click", search);
+    setTimeout(() => render(products), 900);
+  </script>
+</body>
+</html>
